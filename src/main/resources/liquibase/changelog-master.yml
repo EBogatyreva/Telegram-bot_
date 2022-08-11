@@ -1,6 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 1
+      author: L_Bogatyreva
       preConditions:
         - onFail: MARK_RAN
           not:
@@ -12,14 +13,14 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: big-serial
+                  type: bigserial
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: userid
-                  type: biginteger
+                  type: bigint
                   constraints:
                     nullable: false
               - column:

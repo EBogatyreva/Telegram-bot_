@@ -54,7 +54,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     LocalDateTime localDateTime = parselocalDateTime(matcher.group(1));
                     if (localDateTime != null) {
                         String message1 = matcher.group(3);
-                        notificationTaskService.addTask(localDateTime, message, user);
+                        notificationTaskService.addTask(localDateTime, message1, user);
                     } else {
                         SendMessage sendMessage = new SendMessage(user, "Ошибка ввода");
                         sendMessage.parseMode(ParseMode.Markdown);
@@ -66,7 +66,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 
-    @Scheduled(fixedDelay = 60 * 1_000L)
+    @Scheduled(cron = "0 0/1 * * * *")
     public void run() {
         notificationTaskService.findTasks().
                 forEach(notificationTask -> {
@@ -78,7 +78,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     @Nullable
     private LocalDateTime parselocalDateTime(String localDateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         try {
             return LocalDateTime.parse(localDateTime, formatter);
         } catch (DateTimeParseException e) {

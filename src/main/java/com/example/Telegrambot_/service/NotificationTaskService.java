@@ -1,8 +1,8 @@
-package service;
+package com.example.Telegrambot_.service;
 
-import model.NotificationTask;
+import com.example.Telegrambot_.model.NotificationTask;
 import org.springframework.stereotype.Service;
-import repository.NotificationTaskRepository;
+import com.example.Telegrambot_.repository.NotificationTaskRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;

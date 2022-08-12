@@ -1,6 +1,6 @@
-package repository;
+package com.example.Telegrambot_.repository;
 
-import model.NotificationTask;
+import com.example.Telegrambot_.model.NotificationTask;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

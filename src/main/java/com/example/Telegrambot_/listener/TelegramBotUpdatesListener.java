@@ -1,4 +1,4 @@
-package listener;
+package com.example.Telegrambot_.listener;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import service.NotificationTaskService;
+import com.example.Telegrambot_.service.NotificationTaskService;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -55,6 +55,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     if (localDateTime != null) {
                         String message1 = matcher.group(3);
                         notificationTaskService.addTask(localDateTime, message1, user);
+                        telegramBot.execute(new SendMessage(user, "Задача запланирована"));
                     } else {
                         SendMessage sendMessage = new SendMessage(user, "Ошибка ввода");
                         sendMessage.parseMode(ParseMode.Markdown);
